@@ -6,15 +6,33 @@ from icmp_flood import detect_icmp_flood
 from dns_detector import detect_dns_abuse
 
 from scapy.layers.dns import DNS
+from threat_intel import check_blacklisted_ip
 
 
 def packet_callback(packet):
 
     try:
 
-        print(packet.summary())
+        
 
         if packet.haslayer(IP):
+            src_ip = packet[IP].src
+
+            dst_ip = packet[IP].dst
+            print("Checking",src_ip,dst_ip)
+            if check_blacklisted_ip(src_ip):
+
+                generate_alert(
+                f"Blacklisted IP Detected: {src_ip}",
+                "CRITICAL"
+    )
+
+            if check_blacklisted_ip(dst_ip):
+
+                generate_alert(
+                f"Blacklisted IP Detected: {dst_ip}",
+                "CRITICAL"
+    )
 
             # -------------------------
             # DNS Detection
