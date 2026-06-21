@@ -25,6 +25,8 @@ def home():
 
     <p>Medium Alerts: {stats['medium']}</p>
 
+    <p>Threat Intel Alerts: {stats['threat_intel']}</p>
+
     <hr>
 
     <h2>Recent Alerts</h2>

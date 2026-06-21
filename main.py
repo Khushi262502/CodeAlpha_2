@@ -4,6 +4,7 @@ from log_analyzer import analyze_log
 from ransomware_detector import start_ransomware_monitor
 from test_ransomware import simulate_ransomware
 from dashboard import start_dashboard
+from report_generator import generate_report
 
 import threading
 import time
@@ -35,7 +36,6 @@ start_test_scan()
 analyze_log()
 
 simulate_ransomware()
+generate_report()
 
-while True:
-
-    time.sleep(1)
+print("Program Finished")

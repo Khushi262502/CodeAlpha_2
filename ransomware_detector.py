@@ -67,14 +67,4 @@ def start_ransomware_monitor():
         "Ransomware Monitor Started..."
     )
 
-    try:
-
-        while True:
-
-            time.sleep(1)
-
-    except KeyboardInterrupt:
-
-        observer.stop()
-
-    observer.join()
+    return observer

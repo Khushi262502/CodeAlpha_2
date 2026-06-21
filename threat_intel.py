@@ -1,18 +1,35 @@
-blacklisted_ips = {
-    "192.168.1.31",
-    "185.220.101.1",
-    "45.33.32.156",
-    "103.21.244.0"
-}
+alerted_ips = set()
+
+def load_blacklist():
+
+    try:
+
+        with open(
+            "blacklist.txt",
+            "r"
+        ) as file:
+
+            return set(
+                line.strip()
+                for line in file
+                if line.strip()
+            )
+
+    except FileNotFoundError:
+
+        return set()
+
 
 def check_blacklisted_ip(ip):
 
-    print("BLACKLIST CHECK:", ip)
+    blacklisted_ips = load_blacklist()
 
     if ip in blacklisted_ips:
 
-        print("MATCH FOUND!")
+        if ip not in alerted_ips:
 
-        return True
+            alerted_ips.add(ip)
+
+            return True
 
     return False

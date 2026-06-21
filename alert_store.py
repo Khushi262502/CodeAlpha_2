@@ -26,10 +26,15 @@ def get_stats():
         1 for alert in alerts
         if "[MEDIUM]" in alert
     )
+    threat_intel = sum(
+    1 for alert in alerts
+    if "Blacklisted IP" in alert
+    )
 
     return {
         "total": total,
         "critical": critical,
         "high": high,
-        "medium": medium
+        "medium": medium,
+        "threat_intel":threat_intel
     }

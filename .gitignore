@@ -9,3 +9,4 @@ __pycache__/
 capture.pcap
 
 alerts.log
+incident_report.pdf
